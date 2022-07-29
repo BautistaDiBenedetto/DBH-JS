@@ -31,6 +31,30 @@ function renderizarProductos(prodId) {
 }
 
 
+//fetch
+
+const lista = document.querySelector("#listado")
+fetch("../stock.json")
+    .then( (response) => response.json() )
+    .then( (resultado) => {
+        console.log(resultado)
+        resultado.forEach ((producto) => {
+            const li = document.createElement("li")
+            li.innerHTML = `
+            <div>
+
+            <h5 class="card_numero">${producto.numero}</h5>
+            <img class="card_image" src=${producto.imagen}>
+            <div class="card_desc">${producto.desc}</div>
+            <div class="card_precio">${producto.precio}</div>
+            <button id=${producto.id} class="btn_agregar" >Agregar al Carrito</button>
+            
+            </div>
+            `
+            lista.append(li);
+        })
+})
+
 
 
 
