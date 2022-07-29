@@ -12,9 +12,15 @@ stockProductos.forEach(producto => {
     <img class="card_image" src=${producto.imagen}>
     <div class="card_desc">${producto.desc}</div>
     <div class="card_precio">${producto.precio}</div>
-    <button id=${producto.id} class="btn_agregar" onclick="renderizarProductos(${producto.id}); carroAlerta()">Agregar al Carrito</button>
+    <button id=${producto.id} class="btn_agregar">Agregar al Carrito</button>
     `
     container.appendChild(div)
+
+    boton.addEventListener("click", () => {
+        carroAlerta()
+        renderizarProductos(producto.id);
+
+    })
 })
 
 function renderizarProductos(prodId) {
