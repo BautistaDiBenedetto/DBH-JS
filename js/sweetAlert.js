@@ -28,6 +28,5 @@
         title: 'Producto Añadido!',
         text: `El producto se añadio correctamente`,
         icon: 'success',
-        
       })
   }
