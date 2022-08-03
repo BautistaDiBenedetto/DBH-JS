@@ -520,6 +520,10 @@ select {
   outline: none;
 }
 
+.card_image__modal{
+  height: 50px;
+  width: 50px;
+}
 /*---------------------CONTACTO----------------------*/
 .form-register {
   width: 800px;
