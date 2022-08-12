@@ -345,14 +345,15 @@ ul {
 }
 
 /*---------------------PRODUCTOS---------------------*/
-#container_productos{
+#listado{
   display: grid;
-  gap: 1rem;
-  max-width: 60rem;
-  margin: 60px auto;
-  display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   justify-content: space-between;
-  flex-wrap: wrap;
+  margin: 60px;
+  padding: auto;
+  grid-row-gap: 50px;
+ 
 }
 .btn_agregar{
   margin-top: auto;
@@ -361,12 +362,16 @@ ul {
 p {
   line-height: 1.8;
 }
-
+.card_image{
+  width: 300px;
+  height: 300px;
+}
 .card {
-  max-width: 30%;
+  max-width: 80%;
+  align-items: center;
   padding: 10px;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  box-shadow: rgba(0, 0, 0, 0.783) 0px 5px 15px 0px;
 }
 
 select {

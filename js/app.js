@@ -26,36 +26,36 @@ botonVaciar.addEventListener('click', () => {
     actualizarCarrito()
 })
 
-function renderizarCarrito() {   //PRIMER PASO
-    const container = document.getElementById("container_productos");
-    stockProductos.forEach(producto => {
-        const div = document.createElement("div");
-        div.classList.add("card");
-        div.innerHTML = `
-        <h5 class="card_numero">${producto.numero}</h5>
-        <img class="card_image" src=${producto.imagen}>
-        <div class="card_desc">${producto.desc}</div>
-        <div class="card_precio">${producto.precio}</div>
-        <button id=${producto.id} class="btn_agregar">Agregar al Carrito</button>
-        `
-        container.appendChild(div)
+// function renderizarCarrito() {   //PRIMER PASO
+//     const container = document.getElementById("container_productos");
+//     stockProductos.forEach(producto => {
+//         const div = document.createElement("div");
+//         div.classList.add("card");
+//         div.innerHTML = `
+//         <h5 class="card_numero">${producto.numero}</h5>
+//         <img class="card_image" src=${producto.imagen}>
+//         <div class="card_desc">${producto.desc}</div>
+//         <div class="card_precio">${producto.precio}</div>
+//         <button id=${producto.id} class="btn_agregar">Agregar al Carrito</button>
+//         `
+//         container.appendChild(div)
 
-        const boton = document.getElementById(`${producto.id}`)
+//         const boton = document.getElementById(`${producto.id}`)
 
-            boton.addEventListener("click", () => {
-                carroAlerta()
-                agregarAlCarrito(producto.id);
+//             boton.addEventListener("click", () => {
+//                 carroAlerta()
+//                 agregarAlCarrito(producto.id);
 
-            })
-    })
-}
+//             })
+//     })
+// }
 
- renderizarCarrito()
+//  renderizarCarrito()
 
- 
+
 const agregarAlCarrito = (prodId) => {
     const existe = carrito.some (prod => prod.id === prodId)
-    
+
     if (existe){ 
         const prod = carrito.map (prod => {
             if (prod.id === prodId){
@@ -66,7 +66,7 @@ const agregarAlCarrito = (prodId) => {
         const item = stockProductos.find((prod) => prod.id === prodId)
         carrito.push(item)
     }
-    
+
     actualizarCarrito()
     console.log(carrito)
 }
@@ -79,7 +79,7 @@ const eliminarDelCarrito = (prodId) => {
     carrito.splice(indice, 1)
 
     actualizarCarrito() 
-  
+
 }
 
 const actualizarCarrito = () => {
@@ -104,7 +104,7 @@ const actualizarCarrito = () => {
 
     contadorCarrito.innerText = carrito.length
 
-   
+
 
     precioTotal.innerText = carrito.reduce((acc, producto) => acc + producto.cantidad * producto.precio, 0)
 }
@@ -112,23 +112,32 @@ const actualizarCarrito = () => {
 
 //fetch
 
-// const lista = document.querySelector("#listado")
-// fetch("../stock.json")
-//     .then( (response) => response.json() )
-//     .then( (data) => {
-//         console.log(resultado)
-//         data.forEach ((producto) => {
-//             const li = document.createElement("li")
-//             li.innerHTML = `
-//             <div>
-//             <h5 class="card_numero">${producto.numero}</h5>
-//             <img class="card_image" src=${producto.imagen}>
-//             <div class="card_desc">${producto.desc}</div>
-//             <div class="card_precio">${producto.precio}</div>
-//             <button id=${producto.id} class="btn_agregar" >Agregar al Carrito</button>           
-//             </div>
-//             `
-//             lista.append(li);
-//         })
-// })
+const lista = document.querySelector("#listado")
+console.log(lista)
+
+fetch("../stock.json")
+    .then((response) => response.json())
+    .then((data) => {
+        data.forEach((producto) => {
+            const div = document.createElement("div")
+            div.classList.add("card");
+            div.innerHTML = `
+            <h5 class="card_numero">${producto.numero}</h5>
+            <img class="card_image" src=${producto.imagen}>
+            <div class="card_desc">${producto.desc}</div>
+            <div class="card_precio">${producto.precio}</div>
+            <button onclick=carroAlerta() onclick=agregarAlCarrito() id=${producto.id} class="btn_agregar" >Agregar al Carrito</button>           
+
+            `
+            lista.appendChild(div);
+
+            // const boton = document.getElementById(`${producto.id}`)
+
+            // boton.addEventListener("click", () => {
+            //     carroAlerta()
+            //     agregarAlCarrito(producto.id);
+
+            // })
+        })
+    })
 
